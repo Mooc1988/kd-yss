@@ -1,5 +1,9 @@
-'use strict'
+/**
+ * Created by frank on 2017/3/4.
+ */
 
-exports.index = function * index () {
-  this.body = 'hi, egg'
+module.exports = {
+  index: function * () {
+    this.body = 'hello, world'
+  }
 }

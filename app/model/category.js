@@ -1,27 +1,34 @@
-'use strict';
-
+'use strict'
+// 分类模型
 module.exports = function (sequelize) {
-  const Sequelize = sequelize.Sequelize
+  const {STRING, BOOLEAN, INTEGER} = sequelize.Sequelize
   return sequelize.define('category', {
-    // 名称
+    // 专题名称
     name: {
-      type: Sequelize.STRING(128),
+      type: STRING(128),
+      allowNull: false,
+      unique: true
+    },
+    // 编号
+    code: {
+      type: STRING(128),
+      allowNull: false
     },
     // 开启
     enable: {
-      type: Sequelize.BOOLEAN,
+      type: BOOLEAN,
+      defaultValue: true
     },
     // 排序
     order: {
-      type: Sequelize.INTEGER,
+      type: INTEGER.UNSIGNED,
+      defaultValue: 1
     }
   }, {
     classMethods: {
-      associate (model) {
-        const {category, topic, book, bookCategory, categoryTopic} = model
-        category.belongsToMany(topic, {through: categoryTopic})
-        category.belongsToMany(book, {through: bookCategory})
+      associate ({category, album}) {
+        category.hasMany(album)
       }
     }
   })
-};
+}
