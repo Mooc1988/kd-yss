@@ -3,26 +3,28 @@
 module.exports = function (sequelize) {
   const {STRING, INTEGER} = sequelize.Sequelize
   return sequelize.define('sound', {
+    id: {
+      type: INTEGER,
+      primaryKey: true
+    },
     // 名称
-    name: {
+    title: {
       type: STRING(128),
-      allowNull: false,
-      unique: true
+      allowNull: false
     },
     url: {
       type: STRING(512),
-      allowNull: false,
-      unique: true
+      allowNull: false
     },
     // 阅读量
-    viewCount: {
+    playCount: {
       type: INTEGER.UNSIGNED,
       defaultValue: 0
     },
-    // 下载量
-    downloadCount: {
+
+    duration: {
       type: INTEGER.UNSIGNED,
-      defaultValue: 0
+      allowNull: false
     }
   }, {
     classMethods: {
@@ -30,6 +32,8 @@ module.exports = function (sequelize) {
         let {sound, album} = model
         sound.belongsTo(album)
       }
-    }
+    },
+    tableName: 'sound',
+    timestamps: false
   })
 }

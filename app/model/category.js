@@ -3,16 +3,15 @@
 module.exports = function (sequelize) {
   const {STRING, BOOLEAN, INTEGER} = sequelize.Sequelize
   return sequelize.define('category', {
+    id: {
+      primaryKey: true,
+      type: STRING(128)
+    },
     // 专题名称
-    name: {
+    title: {
       type: STRING(128),
       allowNull: false,
       unique: true
-    },
-    // 编号
-    code: {
-      type: STRING(128),
-      allowNull: false
     },
     // 开启
     enable: {
@@ -29,6 +28,8 @@ module.exports = function (sequelize) {
       associate ({category, album}) {
         category.hasMany(album)
       }
-    }
+    },
+    tableName: 'category',
+    timestamps: false
   })
 }

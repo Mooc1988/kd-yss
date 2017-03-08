@@ -1,13 +1,16 @@
 'use strict'
 // 专辑模型
 module.exports = function (sequelize) {
-  const {STRING, BOOLEAN, INTEGER, ARRAY} = sequelize.Sequelize
+  const {STRING, BOOLEAN, INTEGER, ARRAY, DATEONLY} = sequelize.Sequelize
   return sequelize.define('album', {
+    id: {
+      primaryKey: true,
+      type: INTEGER
+    },
     // 名称
-    name: {
+    title: {
       type: STRING(128),
-      allowNull: false,
-      unique: true
+      allowNull: false
     },
     // 开启
     enable: {
@@ -23,6 +26,20 @@ module.exports = function (sequelize) {
       type: INTEGER.UNSIGNED,
       defaultValue: 1
     },
+    // 最后更新时间
+    lastUpdate: {
+      type: DATEONLY
+    },
+    // 封面大图
+    smallImage: {
+      type: STRING,
+      allowNull: false
+    },
+    // 封面小图
+    bigImage: {
+      type: STRING,
+      allowNull: false
+    },
     // 排序
     order: {
       type: INTEGER.UNSIGNED,
@@ -35,6 +52,8 @@ module.exports = function (sequelize) {
         album.belongsTo(category)
         album.hasMany(sound)
       }
-    }
+    },
+    tableName: 'album',
+    timestamps: false
   })
 }

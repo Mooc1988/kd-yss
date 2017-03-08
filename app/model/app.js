@@ -14,5 +14,7 @@ module.exports = function (sequelize) {
       type: BOOLEAN,
       defaultValue: false
     }
+  }, {
+    tableName: 'app'
   })
 }
