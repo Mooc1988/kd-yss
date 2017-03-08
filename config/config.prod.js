@@ -3,10 +3,10 @@
  */
 
 exports.sequelize = {
-  port: '5432',
+  port: '3433',
   host: 'rdsfom58rh8q9mrl8885.pg.rds.aliyuncs.com',
   username: 'mooc1988',
   password: 'Mooc1988',
   database: 'kd-yss',
-  dialect: 'postgres' // support: mysql, mariadb, postgres, mssql
+  dialect: 'postgres'
 }
