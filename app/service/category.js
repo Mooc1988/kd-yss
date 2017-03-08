@@ -6,7 +6,7 @@ module.exports = app => {
   class CategoryService extends app.Service {
     * find () {
       const Category = this.ctx.model.category
-      return yield Category.findAll({order: ['order', 'DESC']})
+      return yield Category.findAll({order: [['order', 'DESC']]})
     }
   }
   return CategoryService
